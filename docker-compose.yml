@@ -7,3 +7,14 @@ services:
     command: bundle exec shotgun --port=5000 --host=0.0.0.0 config.ru
     volumes:
       - ./:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:11.2
+    volumes:
+      - postgres_movies_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_movies_data:
+    driver: local

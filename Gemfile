@@ -10,6 +10,10 @@ end
 gem 'sinatra'
 gem 'shotgun'
 gem 'dry-transaction'
+gem 'sequel'
+gem 'irb', require: false
+gem 'pg'
+gem 'rake'
 
 group :test do
   gem 'rack-test', require: "rack/test"
