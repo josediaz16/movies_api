@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  web:
+    build: .
+    ports:
+      - 5000:5000
+    command: bundle exec shotgun --port=5000 --host=0.0.0.0 config.ru
+    volumes:
+      - ./:/app
