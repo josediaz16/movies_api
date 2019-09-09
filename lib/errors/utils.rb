@@ -1,4 +1,6 @@
+require 'dry-validation'
 require_relative 'dry_result'
+require_relative 'sequel_error'
 
 module Errors
   module Utils
