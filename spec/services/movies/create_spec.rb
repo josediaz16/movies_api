@@ -29,7 +29,7 @@ RSpec.describe Movies::Create do
 
     context "The name is taken" do
       it "Should be failure" do
-        Movie.insert(input)
+        Movie.create(input)
 
         expect(result).to be_failure
         expect(result.failure[:errors]).to match_array([

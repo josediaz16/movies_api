@@ -4,7 +4,7 @@ namespace :db do
   task :migrate, [:version] do |t, args|
     require 'sequel/core'
     Sequel.extension :migration
-    version = args[:version].to_if if args[:version]
+    version = args[:version].to_i if args[:version]
     Sequel.connect('postgres://postgres@postgres:5432/movies_db') do |db|
       Sequel::Migrator.run(db, "db/migrate", target: version)
     end
