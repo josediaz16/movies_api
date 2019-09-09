@@ -24,9 +24,9 @@ RSpec.describe Validators::Movies do
       it "Should be success" do
         expect(result).to be_failure
         expect(result.messages).to eq(
-					name: ["is missing"],
-          description: ["is missing"],
-          image_url: ["is missing", "must be a valid url"]
+          name: ["blank~is missing"],
+          description: ["blank~is missing"],
+          image_url: ["blank~is missing", "format~must be a valid url"]
         )
       end
     end
