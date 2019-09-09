@@ -1,0 +1,56 @@
+en:
+  errors:
+    or: "or"
+    array?: "format~must be an array"
+    empty?: "format~must be empty"
+    excludes?: "inclusion~must not include %{value}"
+    excluded_from?:
+      arg:
+        default: "must not be one of: %{list}"
+        range: "must not be one of: %{list_left} - %{list_right}"
+    exclusion?: "inclusion~must not be one of: %{list}"
+    eql?: "equality~must be equal to %{left}"
+    not_eql?: "equality~must not be equal to %{left}"
+    filled?: "blank~must be filled"
+    format?: "format~is in invalid format"
+    number?: "number~must be a number"
+    odd?: "number~must be odd"
+    even?: "number~must be even"
+    gt?: "gt~must be greater than %{num}"
+    gteq?: "gteq~must be greater than or equal to %{num}"
+    hash?: "format~must be a hash"
+    included_in?:
+      arg:
+        default: "inclusion~must be one of: %{list}"
+        range: "inclusion~must be one of: %{list_left} - %{list_right}"
+    inclusion?: "inclusion~must be one of: %{list}"
+    includes?: "inclusion~must include %{value}"
+    bool?: "format~must be boolean"
+    true?: "format~must be true"
+    false?: "format~must be false"
+    int?: "format~must be an integer"
+    float?: "format~must be a float"
+    decimal?: "format~must be a decimal"
+    date?: "format~must be a date"
+    date_time?: "format~must be a date time"
+    time?: "format~must be a time"
+    key?: "blank~is missing"
+    attr?: "blank~is missing"
+    lt?: "lt~must be less than %{num}"
+    lteq?: "lteq~must be less than or equal to %{num}"
+    max_size?: "size~size cannot be greater than %{num}"
+    min_size?: "size~size cannot be less than %{num}"
+    none?: "cannot be defined"
+    str?: "format~must be a string"
+    type?: "format~must be %{type}"
+    size?:
+      arg:
+        default: "size~size must be %{size}"
+        range: "size~size must be within %{size_left} - %{size_right}"
+      value:
+        string:
+          arg:
+            default: "length~length must be %{size}"
+            range: "length~length must be within %{size_left} - %{size_right}"
+
+    valid_url?: "format~must be a valid url"
