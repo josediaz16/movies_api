@@ -11,7 +11,7 @@ class App < Sinatra::Base
   end
 
   post '/movies' do
-    input = params.slice(:name, :description, :image_url)
+    input = params.slice(:name, :description, :image_url, :show_days)
     result = Movies::Create.new.(input)
 
     if result.success?

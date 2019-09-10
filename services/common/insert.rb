@@ -10,11 +10,11 @@ module Common
       @model = model
     end
 
-    def call(input)
-      record = model.new(input)
+    def call(attributes:, **other_input)
+      record = model.new(attributes)
       if record.valid?
         record.save
-        Success model: record
+        Success model: record, **other_input
       else
         Failure errors: Errors::SequelError.new(record)
       end
