@@ -18,6 +18,10 @@ module Validators
       def provided?(value)
         value.present?
       end
+
+      def exists?(model_class, value)
+        model_class.where(id: value).any?
+      end
     end
   end
 end

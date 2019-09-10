@@ -43,6 +43,7 @@ en:
     none?: "cannot be defined"
     str?: "format~must be a string"
     type?: "format~must be %{type}"
+    exists?: "existance~The record does not exist"
     size?:
       arg:
         default: "size~size must be %{size}"
@@ -54,3 +55,5 @@ en:
             range: "length~length must be within %{size_left} - %{size_right}"
 
     valid_url?: "format~must be a valid url"
+    available_movie: "invalid~The movie is not available this day"
+    max_reservations: "invalid~There are not enough places left"
