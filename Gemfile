@@ -16,6 +16,7 @@ gem 'irb', require: false
 gem 'pg'
 gem 'rake'
 gem 'activesupport', require: false
+gem 'blueprinter'
 
 group :test do
   gem 'rack-test', require: "rack/test"

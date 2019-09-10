@@ -1,5 +1,6 @@
 require 'sinatra'
 require './services/movies/create'
+require './blueprints/movie_blueprint'
 
 class App < Sinatra::Base
   before do
@@ -20,6 +21,22 @@ class App < Sinatra::Base
     else
       status 400
       result.failure.to_json
+    end
+  end
+
+  get '/movies' do
+    if params[:show_day]
+      status 200
+
+      movies = Movie
+        .association_join(:show_days)
+        .where(day_number: params[:show_day])
+        .select_all(:movies)
+        .to_a
+
+      MovieBlueprint.render(movies)
+    else
+      status 400
     end
   end
 end
