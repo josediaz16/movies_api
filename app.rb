@@ -1,5 +1,6 @@
 require 'sinatra'
 require './services/movies/create'
+require './services/reservations/create'
 require './blueprints/movie_blueprint'
 
 class App < Sinatra::Base
@@ -37,6 +38,19 @@ class App < Sinatra::Base
       MovieBlueprint.render(movies)
     else
       status 400
+    end
+  end
+
+  post '/movies/:movie_id/reservations' do
+    input = params.slice(:reservation_date, :reservation_count, :document).merge(movie_id: params[:movie_id])
+    result = Reservations::Create.new.(input)
+
+    if result.success?
+      status 200
+      result.success[:model].values.to_json
+    else
+      status 400
+      result.failure.to_json
     end
   end
 end
