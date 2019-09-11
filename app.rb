@@ -2,6 +2,7 @@ require 'sinatra'
 require './services/movies/create'
 require './services/reservations/create'
 require './blueprints/movie_blueprint'
+require './blueprints/reservation_blueprint'
 
 class App < Sinatra::Base
   before do
@@ -38,6 +39,7 @@ class App < Sinatra::Base
       MovieBlueprint.render(movies)
     else
       status 400
+      {error: "show_day param is required"}.to_json
     end
   end
 
@@ -51,6 +53,23 @@ class App < Sinatra::Base
     else
       status 400
       result.failure.to_json
+    end
+  end
+
+  get '/reservations' do
+    if params[:start_date] && params[:end_date]
+      status 200
+
+      reservations = Reservation
+        .association_join(:movie)
+        .where(reservation_date: params[:start_date]...params[:end_date])
+        .select_all(:reservations)
+        .to_a
+
+      ReservationBlueprint.render(reservations)
+    else
+      status 400
+      {error: "start_date and end_date params are required"}.to_json
     end
   end
 end
