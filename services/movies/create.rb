@@ -7,6 +7,7 @@ module Movies
   class Create
     include Dry::Transaction
     include Common::ApiResponse
+    prepend Common::DbTransaction
 
     step :validate_input
     map  :parse_input

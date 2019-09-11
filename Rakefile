@@ -28,9 +28,6 @@ namespace :db do
     require 'sequel'
     require 'yaml'
 
-    env = ENV["RACK_ENV"] || "development"
-    config = YAML.load_file('./config/database.yml')
-
     url = ENV["DATABASE_URL"] || -> do
       env = ENV["RACK_ENV"] || "development"
       config = YAML.load_file('./config/database.yml')

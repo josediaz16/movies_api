@@ -1,4 +1,5 @@
 require './db/init'
+require_relative 'show_day'
 
 class Movie < Sequel::Model(DB[:movies])
   many_to_many :show_days
