@@ -44,4 +44,14 @@ namespace :db do
       db.execute "CREATE DATABASE #{db_name}"
     end
   end
+
+  task :seed do
+    require './models/show_day'
+
+    days = {'monday' => 1, 'tuesday' => 2, 'wednesday' => 3, 'thursday' => 4, 'friday' => 5, 'saturday' => 6, 'sunday' => 7}
+
+    days.each do |name, day_number|
+      ShowDay.create(day_number: day_number, name: name)
+    end
+  end
 end
