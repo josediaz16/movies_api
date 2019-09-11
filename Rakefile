@@ -8,9 +8,11 @@ namespace :db do
     Sequel.extension :migration
     version = args[:version].to_i if args[:version]
 
-    env = ENV["RACK_ENV"] || "development"
-    config = YAML.load_file('./config/database.yml')
-    url = config.fetch(env)
+    url = ENV["DATABASE_URL"] || -> do
+      env = ENV["RACK_ENV"] || "development"
+      config = YAML.load_file('./config/database.yml')
+      config.fetch(env)
+    end.()
 
     Sequel.connect(url) do |db|
       Sequel::Migrator.run(db, "db/migrate", target: version)
@@ -28,7 +30,14 @@ namespace :db do
 
     env = ENV["RACK_ENV"] || "development"
     config = YAML.load_file('./config/database.yml')
-    db_name = config.fetch(env).match(/\/([^\/]+)$/)[1]
+
+    url = ENV["DATABASE_URL"] || -> do
+      env = ENV["RACK_ENV"] || "development"
+      config = YAML.load_file('./config/database.yml')
+      config.fetch(env)
+    end.()
+
+    db_name = url.match(/\/([^\/]+)$/)[1]
 
     Sequel.connect('postgres://postgres@postgres:5432/postgres') do |db|
       db.execute "DROP DATABASE IF EXISTS #{db_name}"

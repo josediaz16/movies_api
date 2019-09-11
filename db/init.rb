@@ -1,8 +1,10 @@
 require 'sequel'
 require 'yaml'
 
-config = YAML.load_file('./config/database.yml')
-url = config.fetch ENV["RACK_ENV"]
+url = ENV["DATABASE_URL"] || -> do
+  config = YAML.load_file('./config/database.yml')
+  config.fetch ENV["RACK_ENV"]
+end.()
 
 DB = Sequel.connect(url)
 Sequel::Model.plugin :timestamps, update_on_create: true
