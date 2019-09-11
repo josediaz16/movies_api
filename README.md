@@ -107,3 +107,84 @@ This is a very small example of an API built using the following tools and consi
     }
   ]
   ```
+  
+  * POST /movies/:movie_id/reservations
+
+  Params
+  
+  <table>
+  <tr>
+    <th>Param name</th>
+    <th>Required</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>reservation_date</td>
+    <td>true</td>
+    <td>Date</td>
+    <td>The day of the reservation</td>
+  </tr>
+  <tr>
+    <td>reservation_count</td>
+    <td>true</td>
+    <td>Integer</td>
+    <td>Number of tickets of the reservation</td>
+  </tr>
+  <tr>
+    <td>document</td>
+    <td>true</td>
+    <td>String</td>
+    <td>The id of the person who makes the reservation</td>
+  </tr>
+</table>
+
+  Example:
+
+  ```
+  curl -XPOST http://localhost:5000/movies/1/reservations -H 'Contentd 'pe: application/json' -d
+  {
+    "reservation_date": "2019-10-1",
+    "reservation_count": 3,
+    "document": "12345"
+  }                  
+  '   
+  ```
+
+  Response:
+  ```
+  {
+    "id":1,
+    "document":"12345",
+    "reservation_count":3,
+    "reservation_date":"2019-10-01",
+    "created_at":"2019-09-11 18:14:47 +0000",
+    "updated_at":"2019-09-11 18:14:47 +0000",
+    "movie_id":1
+  }
+  ```
+
+  * GET /reservations?
+
+  Example:
+  `curl "http://localhost:5000/reservations?start_date=2019-10-01&end_date=2019-10-10"`
+
+  Response:
+
+  ```
+  [
+    {
+        "id": 1,
+        "movie": {
+            "description": "Marty Mcfly is sent back to 1955 and he has to save Doc Emmet Brown",
+            "id": 1,
+            "image_url": "https://myimages.com/back_to_the_future"
+        },
+        "reservation_count": 3,
+        "reservation_date": "2019-10-01"
+    }
+  ]
+
+  ```
+
+  
