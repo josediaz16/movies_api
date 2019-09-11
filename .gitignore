@@ -1,3 +1,4 @@
 gems/
 *.swp
 *.swo
+config/database.yml

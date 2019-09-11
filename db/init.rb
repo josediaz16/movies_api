@@ -1,4 +1,8 @@
 require 'sequel'
+require 'yaml'
 
-DB = Sequel.connect('postgres://postgres@postgres:5432/movies_db')
+config = YAML.load_file('./config/database.yml')
+url = config.fetch ENV["RACK_ENV"]
+
+DB = Sequel.connect(url)
 Sequel::Model.plugin :timestamps, update_on_create: true
